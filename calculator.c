@@ -33,6 +33,7 @@ int main()
         {
         printf("Insert second number:");
         scanf(" %f", &num2);
+        }
     
      
 
@@ -43,17 +44,20 @@ int main()
         printf("Result: %.4f\n", result);
         }
 
-        else if (op == '-') {
+        else if (op == '-') 
+        {
         result = num1 - num2;
         printf("Result: %.4f\n", result);
         }
 
-        else if (op == '*') {
+        else if (op == '*') 
+        {
         result = num1 * num2;
         printf("Result: %.4f\n", result);
         }
 
-       else if (op == '/') {
+       else if (op == '/') 
+       {
         result = num1 / num2;
         printf("Result: %.4f\n", result);
         }
@@ -69,7 +73,7 @@ int main()
         printf("Continue calculating? (Y/N): ");
         scanf(" %c", &replay);
 
-    }
+    
     
 
     
