@@ -1,86 +1,106 @@
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
 int main()
 {
-    float num1;
-    float num2;
-    char op;
-    float result;
-    char replay;
+  float num1;
+  float num2;
+  int op;
+  float result;
+  char replay;
 
-    
-    
-        //layout
-        printf("---CALCULATOR---\n");
-        printf("Enter an operator:\n");
-        printf("|+,-,*,/|\n");
-        printf("|sin (s) , cos (c), tan (t), root (r)|\n");
-        printf("--- CHOSEN OPERATOR ---\n");
-        scanf("%c", &op);
+  char = 'y';
+  while (replay == 'y' || replay == 'Y')
+  {
+    //layout
+    printf("---CALCULATOR---\n");
+    printf("Enter an operator:\n");
+    printf("1. Addition ");
+    printf("2. Subtraction ");
+    printf("3. Multiplication ");
+    printf("4. Division ");
+    printf("5. Root ");
+    printf("6. Sin ");
+    printf("7. Cos ");
+    printf("8. Tan ");
+    printf("Select a Number:");
+    scanf(" %d", &op);
    
-        if (op == '+'|| op == '-'|| op == '*'|| op == '/'||op == 's'|| op == 'c'|| op == 't'|| op == 'r') 
-        {
-        printf("Insert first number:");
-        scanf(" %f", &num1);
-        }
+
+      //operator valid or not
+      if (op < 1 || op > 8) 
+      {
+      printf("Insert a number:");
+      scanf(" %f", &num1);
+      }
+      if (op >= 1 && op <5 )
+      {
+        printf("Insert another number:");
+        scanf("%f", &num2);
+      }
         else
         {
-          printf("Invalid Operator.\n");
-        }
-    
-        if (op == '+'|| op == '-'|| op == '*'|| op == '/') 
-        {
-        printf("Insert second number:");
-        scanf(" %f", &num2);
-        }
-    
-     
-
-        //operators 
-        if (op == '+') 
-        {
-        result = num1 + num2;
-        printf("Result: %.4f\n", result);
-        }
-
-        else if (op == '-') 
-        {
-        result = num1 - num2;
-        printf("Result: %.4f\n", result);
-        }
-
-        else if (op == '*') 
-        {
-        result = num1 * num2;
-        printf("Result: %.4f\n", result);
-        }
-
-       else if (op == '/') 
-       {
-        result = num1 / num2;
-        printf("Result: %.4f\n", result);
-        }
-        else 
-        {
-          printf("Error: Invalid. Cannot be calculated.\n");
+        printf("Invalid Operator.\n");
         }
         
 
-        //sin cos tan
+      //operators 
+      if (op == 1) 
+      {
+        result = num1 + num2;
+        printf("Result: %.4f\n", result);
+      }
+      else if (op == 2) 
+      {
+        result = num1 - num2;
+        printf("Result: %.4f\n", result);
+      }
+      else if (op == 3) 
+      {
+        result = num1 * num2;
+        printf("Result: %.4f\n", result);
+      }
+      else if (op == 4) 
+      {
+        result = num1 / num2;
+        printf("Result: %.4f\n", result);
+      }
+      else if (op == 5)
+      {
+        result = sqrt(num1);
+        printf("Result : %.4f\n", result);
+      }      
+      else if (op == 6)
+      {
+        result = sin (num1);
+        printf("%.4f\n", result);
+      }
+      else if (op == 7)
+      {
+        result = cos(num1);
+        printf("%.4f\n", result);
+      }
+      else if (op == 8)
+      {
+        result = tan (num1);
+        printf("%.4f\n",result);
+      {
+      else 
+      {
+        printf("Error: Invalid. Cannot be calculated.\n");
+      }
 
-        // for Loop 
-        printf("Continue calculating? (Y/N): ");
-        scanf(" %c", &replay);
+      // for Loop 
+      printf("Continue calculating? (Y/N): ");
+      scanf(" %c", &replay);
 
-    
-    
+      //list store 10
 
-    
-    
 
-    
-    
-   
-  return 0;  
+    }
+
+return 0;  
 }
+
