@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -9,9 +8,8 @@ int main()
   float num2;
   int op;
   float result;
-  char replay;
-
-  char = 'y';
+  char replay='y';
+  
   while (replay == 'y' || replay == 'Y')
   {
     //layout
@@ -29,7 +27,7 @@ int main()
     scanf(" %d", &op);
    
 
-      //operator valid or not
+    //operator valid or not
       if (op < 1 || op > 8) 
       {
       printf("Insert a number:");
@@ -86,7 +84,7 @@ int main()
       {
         result = tan (num1);
         printf("%.4f\n",result);
-      {
+      }
       else 
       {
         printf("Error: Invalid. Cannot be calculated.\n");
@@ -100,7 +98,14 @@ int main()
 
 
     }
+   
+    
 
+    
+    
+
+    
+    
+   
 return 0;  
 }
-
