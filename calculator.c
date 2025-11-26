@@ -12,7 +12,7 @@ int main()
   
   while (replay == 'y' || replay == 'Y')
   {
-    //layout
+    //LAYOUT
     printf("---CALCULATOR---\n");
     printf("Enter an operator:\n ");
     printf("1. Addition\n ");
@@ -24,13 +24,23 @@ int main()
     printf("7. Cos\n ");
     printf("8. Tan\n ");
     printf("--------\n ");
-    printf("Select a Number: ");
-    printf("Press 0 to exit");
-    scanf(" %d ", &op);
-   
+    printf("Press 0 to exit\n ");
+    printf("Selected: ");
+    scanf(" %d", &op);
+    
 
-    //operator valid or not
-      if (op > 0 || op < 9) 
+    //EXIT COMMAND
+      if (op == 0)
+      {
+        exit(0);
+      }
+    //VALIDATING
+      if (op < 0 || op > 8)
+      {
+        printf("Invalid Operator.\n");
+      }
+
+      if (op >0 && op < 9 )
       {
       printf("Insert a number:");
       scanf(" %f", &num1);
@@ -38,15 +48,14 @@ int main()
       if (op >= 1 && op <5 )
       {
         printf("Insert another number: ");
-        scanf("%f ", &num2);
+        scanf("%f", &num2);
       }
-        else
-        {
-        printf("Invalid Operator.\n");
-        }
+
+
         
 
-      //operators 
+      //OPERATORS 
+      
       if (op == 1) 
       {
         result = num1 + num2;
@@ -87,11 +96,8 @@ int main()
         result = tan (num1);
         printf("%.4g\n",result);
       }
-      else 
-      {
-        printf("Error: Invalid. Cannot be calculated.\n");
-      }
-
+    
+       
       // for Loop 
       printf("Continue calculating? (Y/N): ");
       scanf(" %c", &replay);
