@@ -14,7 +14,7 @@ int main()
   {
     //layout
     printf("---CALCULATOR---\n");
-    printf("Enter an operator:\n");
+    printf("Enter an operator:\n ");
     printf("1. Addition\n ");
     printf("2. Subtraction\n ");
     printf("3. Multiplication\n ");
@@ -23,20 +23,22 @@ int main()
     printf("6. Sin\n ");
     printf("7. Cos\n ");
     printf("8. Tan\n ");
-    printf("Select a Number:");
-    scanf(" %d", &op);
+    printf("--------\n ");
+    printf("Select a Number: ");
+    printf("Press 0 to exit");
+    scanf(" %d ", &op);
    
 
     //operator valid or not
-      if (op < 1 || op < 9) 
+      if (op > 0 || op < 9) 
       {
       printf("Insert a number:");
       scanf(" %f", &num1);
       }
       if (op >= 1 && op <5 )
       {
-        printf("Insert another number:");
-        scanf("%f", &num2);
+        printf("Insert another number: ");
+        scanf("%f ", &num2);
       }
         else
         {
