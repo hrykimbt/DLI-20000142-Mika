@@ -15,20 +15,20 @@ int main()
     //layout
     printf("---CALCULATOR---\n");
     printf("Enter an operator:\n");
-    printf("1. Addition ");
-    printf("2. Subtraction ");
-    printf("3. Multiplication ");
-    printf("4. Division ");
-    printf("5. Root ");
-    printf("6. Sin ");
-    printf("7. Cos ");
-    printf("8. Tan ");
+    printf("1. Addition\n ");
+    printf("2. Subtraction\n ");
+    printf("3. Multiplication\n ");
+    printf("4. Division\n ");
+    printf("5. Root\n ");
+    printf("6. Sin\n ");
+    printf("7. Cos\n ");
+    printf("8. Tan\n ");
     printf("Select a Number:");
     scanf(" %d", &op);
    
 
     //operator valid or not
-      if (op < 1 || op > 8) 
+      if (op < 1 || op < 9) 
       {
       printf("Insert a number:");
       scanf(" %f", &num1);
@@ -48,42 +48,42 @@ int main()
       if (op == 1) 
       {
         result = num1 + num2;
-        printf("Result: %.4f\n", result);
+        printf("Result: %.4g\n", result);
       }
       else if (op == 2) 
       {
         result = num1 - num2;
-        printf("Result: %.4f\n", result);
+        printf("Result: %.4g\n", result);
       }
       else if (op == 3) 
       {
         result = num1 * num2;
-        printf("Result: %.4f\n", result);
+        printf("Result: %.4g\n", result);
       }
       else if (op == 4) 
       {
         result = num1 / num2;
-        printf("Result: %.4f\n", result);
+        printf("Result: %.4g\n", result);
       }
       else if (op == 5)
       {
         result = sqrt(num1);
-        printf("Result : %.4f\n", result);
+        printf("Result : %.4g\n", result);
       }      
       else if (op == 6)
       {
         result = sin (num1);
-        printf("%.4f\n", result);
+        printf("%.4g\n", result);
       }
       else if (op == 7)
       {
         result = cos(num1);
-        printf("%.4f\n", result);
+        printf("%.4g\n", result);
       }
       else if (op == 8)
       {
         result = tan (num1);
-        printf("%.4f\n",result);
+        printf("%.4g\n",result);
       }
       else 
       {
