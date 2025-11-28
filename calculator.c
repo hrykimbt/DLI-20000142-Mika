@@ -8,12 +8,14 @@ int main()
   float num2;
   int op;
   float result;
+  
   char replay='y';
   
+  printf("---CALCULATOR---\n");
+
   while (replay == 'y' || replay == 'Y')
   {
     //LAYOUT
-    printf("---CALCULATOR---\n");
     printf("Enter an operator:\n ");
     printf("1. Addition\n ");
     printf("2. Subtraction\n ");
@@ -23,7 +25,7 @@ int main()
     printf("6. Sin\n ");
     printf("7. Cos\n ");
     printf("8. Tan\n ");
-    printf("--------\n ");
+    printf("----------------\n ");
     printf("Press 0 to exit\n ");
     printf("Selected: ");
     scanf(" %d", &op);
@@ -42,18 +44,15 @@ int main()
 
       if (op >0 && op < 9 )
       {
-      printf("Insert a number:");
-      scanf(" %f", &num1);
+        printf("Insert a number:");
+        scanf(" %f", &num1);
       }
       if (op >= 1 && op <5 )
       {
         printf("Insert another number: ");
         scanf("%f", &num2);
       }
-
-
         
-
       //OPERATORS 
       
       if (op == 1) 
@@ -97,11 +96,10 @@ int main()
         printf("%.4g\n",result);
       }
     
-       
       // for Loop 
       printf("Continue calculating? (Y/N): ");
       scanf(" %c", &replay);
-
+    
       //list store 10
 
 
