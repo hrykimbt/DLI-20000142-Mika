@@ -1,6 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
+
+//struct
+typedef struct
+{
+  float number1;
+  float number2;
+  char operator[5];
+  float results;
+}Calculation;
+
+void printCalc (Calculation calc);
+
+}
 
 int main()
 {
@@ -12,7 +26,6 @@ int main()
   char replay='y';
   
   printf("---CALCULATOR---\n");
-
   while (replay == 'y' || replay == 'Y')
   {
     //LAYOUT
@@ -36,7 +49,8 @@ int main()
       {
         exit(0);
       }
-    //VALIDATING
+
+      //VALIDATING OPERATOR
       if (op < 0 || op > 8)
       {
         printf("Invalid Operator.\n");
@@ -52,10 +66,10 @@ int main()
         printf("Insert another number: ");
         scanf("%f", &num2);
       }
-        
-      //OPERATORS 
+       
       
-      if (op == 1) 
+      //OPERATORS 
+            if (op == 1) 
       {
         result = num1 + num2;
         printf("Result: %.4g\n", result);
@@ -96,17 +110,25 @@ int main()
         printf("%.4g\n",result);
       }
     
-      // for Loop 
+      // CALC LOOP
       printf("Continue calculating? (Y/N): ");
       scanf(" %c", &replay);
-    
-      //list store 10
 
-
+      printHistory()
+      
     }
-   
-    
 
+// MAKE COMMAND THAT ASKS ABOUT STORING RESULT. (after, printing the result)
+printf("Would you like to store this result?");
+scanf("")
+
+//WHEN PAST RESULT IS STORED    
+if (d=1)
+{
+  printf ("Detected store number (%.4g), would you like to use? [Y/N]\n" , &result);
+  scanf ("%c" &y); //the answer, add this when its asking for num1 & num2;  
+  
+}
     
     
 
@@ -115,3 +137,20 @@ int main()
    
 return 0;  
 }
+//print each 
+void printCalc (Calculation calc)
+{
+  printf ("%f %s %f = %f", calc.number1, calc.operator, calc.number2, calc.results);
+}
+//PRINT HISTORY OF CALCULATIONS
+void printHistory
+{
+int list[10];  
+int length = sizeof(list) / sizeof(list[0]);
+for (i=0; i<10; i++)
+{
+  // this is for the array list
+  printf ("%f %s %f = %f", calc[i].number1, calc[i].operator, calc[i].number2, calc[i].results);
+}
+
+
