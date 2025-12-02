@@ -3,18 +3,19 @@
 #include <math.h>
 #include <string.h>
 
-//struct
+/*struct for printing the history
 typedef struct
 {
-  float number1;
-  float number2;
-  char operator[5];
-  float results;
+  float *number1;
+  float *number2;
+  char *operator[5];
+  float *results;
 }Calculation;
 
 void printCalc (Calculation calc);
+*/
 
-}
+
 
 int main()
 {
@@ -44,10 +45,11 @@ int main()
     scanf(" %d", &op);
     
 
-    //EXIT COMMAND
+      //EXIT COMMAND
       if (op == 0)
       {
-        exit(0);
+        printf("Exiting program...\n");
+        break;
       }
 
       //VALIDATING OPERATOR
@@ -56,79 +58,101 @@ int main()
         printf("Invalid Operator.\n");
       }
 
-      if (op >0 && op < 9 )
+      
+      if (op >=1 && op <9)
       {
         printf("Insert a number:");
         scanf(" %f", &num1);
       }
-      if (op >= 1 && op <5 )
-      {
-        printf("Insert another number: ");
-        scanf("%f", &num2);
-      }
+        if (op >= 1 && op <5 )
+        {
+          printf("Insert another number: ");
+          scanf("%f", &num2);
+        }
        
       
       //OPERATORS 
-            if (op == 1) 
+      switch (op)
       {
+      case 1:
         result = num1 + num2;
         printf("Result: %.4g\n", result);
-      }
-      else if (op == 2) 
-      {
+
+        break;
+      case 2: 
         result = num1 - num2;
         printf("Result: %.4g\n", result);
-      }
-      else if (op == 3) 
-      {
+
+        break;
+      case 3:
         result = num1 * num2;
         printf("Result: %.4g\n", result);
-      }
-      else if (op == 4) 
-      {
+
+        break;
+      case 4: 
+        if (num2 == 0)
+        {
+          printf("Cannot be divided.\n");
+          break;
+        }
+
         result = num1 / num2;
         printf("Result: %.4g\n", result);
-      }
-      else if (op == 5)
-      {
+
+        break;
+      case 5:
         result = sqrt(num1);
-        printf("Result : %.4g\n", result);
-      }      
-      else if (op == 6)
-      {
+        printf("Result : %.4g\n", result); 
+
+        break;
+      case 6:
         result = sin (num1);
         printf("%.4g\n", result);
-      }
-      else if (op == 7)
-      {
+
+        break;
+      case 7:
         result = cos(num1);
         printf("%.4g\n", result);
-      }
-      else if (op == 8)
-      {
+
+        break;
+      case 8:
         result = tan (num1);
         printf("%.4g\n",result);
+
+        break;
       }
-    
       // CALC LOOP
       printf("Continue calculating? (Y/N): ");
       scanf(" %c", &replay);
+      
+      //ERROR MESSAGE FOR (Y/N)
+      do
+      {
+        printf("Invalid. Try again.\n");
+        printf("Continue calculating? (Y/N): ");
+        scanf(" %c", &replay);
+      }while (replay != 'Y' || replay != 'y' || replay != 'N' || replay != 'n' );
+      //Exiting Program
+      if (replay == 'N'|| replay == 'n')
+      {
+          printf("Quitting calculator...\n");
+          break;
+      }
 
-      printHistory()
       
     }
 
-// MAKE COMMAND THAT ASKS ABOUT STORING RESULT. (after, printing the result)
+/*MAKE COMMAND THAT ASKS ABOUT STORING RESULT. (after, printing the result)
 printf("Would you like to store this result?");
 scanf("")
 
 //WHEN PAST RESULT IS STORED    
-if (d=1)
+if (//smth that can detect)
 {
   printf ("Detected store number (%.4g), would you like to use? [Y/N]\n" , &result);
   scanf ("%c" &y); //the answer, add this when its asking for num1 & num2;  
   
-}
+}*/
     
     
 
@@ -137,8 +161,8 @@ if (d=1)
    
 return 0;  
 }
-//print each 
-void printCalc (Calculation calc)
+
+/*void printCalc (Calculation calc)
 {
   printf ("%f %s %f = %f", calc.number1, calc.operator, calc.number2, calc.results);
 }
@@ -150,7 +174,8 @@ int length = sizeof(list) / sizeof(list[0]);
 for (i=0; i<10; i++)
 {
   // this is for the array list
-  printf ("%f %s %f = %f", calc[i].number1, calc[i].operator, calc[i].number2, calc[i].results);
+  printf ("%f %s %f = %f", *calc[i].number1, *calc[i].operator, *calc[i].number2, *calc[i].results);
 }
+//if list is already > 10 then delete the top one*/
 
 
