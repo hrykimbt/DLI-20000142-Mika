@@ -3,34 +3,24 @@
 #include <math.h>
 #include <string.h>
 
-/*struct for printing the history
-typedef struct
-{
-  float *number1;
-  float *number2;
-  char *operator[5];
-  float *results;
-}Calculation;
-
-void printCalc (Calculation calc);
-*/
-
-
-
 int main()
 {
+  //MAIN VARIABLES
   float num1;
   float num2;
   int op;
   float result;
-  
+  char equation[100];
+  //LOOP
   char replay='y';
   
+
   printf("---CALCULATOR---\n");
   while (replay == 'y' || replay == 'Y')
   {
     //LAYOUT
-    printf("Enter an operator:\n ");
+    printf("Enter a number to select an operator:\n ");
+    printf("----------------\n ");    
     printf("1. Addition\n ");
     printf("2. Subtraction\n ");
     printf("3. Multiplication\n ");
@@ -45,137 +35,118 @@ int main()
     scanf(" %d", &op);
     
 
-      //EXIT COMMAND
-      if (op == 0)
-      {
-        printf("Exiting program...\n");
-        break;
-      }
-
-      //VALIDATING OPERATOR
-      if (op < 0 || op > 8)
-      {
-        printf("Invalid Operator.\n");
-      }
-
-      
-      if (op >=1 && op <9)
-      {
-        printf("Insert a number:");
-        scanf(" %f", &num1);
-      }
-        if (op >= 1 && op <5 )
-        {
-          printf("Insert another number: ");
-          scanf("%f", &num2);
-        }
-       
-      
-      //OPERATORS 
-      switch (op)
-      {
-      case 1:
-        result = num1 + num2;
-        printf("Result: %.4g\n", result);
-
-        break;
-      case 2: 
-        result = num1 - num2;
-        printf("Result: %.4g\n", result);
-
-        break;
-      case 3:
-        result = num1 * num2;
-        printf("Result: %.4g\n", result);
-
-        break;
-      case 4: 
-        if (num2 == 0)
-        {
-          printf("Cannot be divided.\n");
-          break;
-        }
-
-        result = num1 / num2;
-        printf("Result: %.4g\n", result);
-
-        break;
-      case 5:
-        result = sqrt(num1);
-        printf("Result : %.4g\n", result); 
-
-        break;
-      case 6:
-        result = sin (num1);
-        printf("%.4g\n", result);
-
-        break;
-      case 7:
-        result = cos(num1);
-        printf("%.4g\n", result);
-
-        break;
-      case 8:
-        result = tan (num1);
-        printf("%.4g\n",result);
-
-        break;
-      }
-      // CALC LOOP
-      printf("Continue calculating? (Y/N): ");
-      scanf(" %c", &replay);
-      
-      //ERROR MESSAGE FOR (Y/N)
-      do
-      {
-        printf("Invalid. Try again.\n");
-        printf("Continue calculating? (Y/N): ");
-        scanf(" %c", &replay);
-      }while (replay != 'Y' || replay != 'y' || replay != 'N' || replay != 'n' );
-      //Exiting Program
-      if (replay == 'N'|| replay == 'n')
-      {
-          printf("Quitting calculator...\n");
-          break;
-      }
-
-      
+    //EXIT COMMAND
+    if (op == 0)
+    {
+      printf("Exiting program...\n");
+      exit(0);
     }
 
-/*MAKE COMMAND THAT ASKS ABOUT STORING RESULT. (after, printing the result)
-printf("Would you like to store this result?");
-scanf("")
+    //VALIDATING OPERATOR
+    if (op < 0 || op > 8)
+    {
+      printf("Invalid Operator.\n");
+    }
+    if (op >=1 && op <9)
+    {
+      printf("Insert a number:");
+      scanf(" %f", &num1);
+    }
+      if (op >= 1 && op <5 )
+      {
+        printf("Insert another number:");
+        scanf(" %f", &num2);
+      }
+       
+      
+    //OPERATORS 
+    switch (op)
+    {
+    case 1:
+      result = num1 + num2;
+      sprintf(equation," %.4g + %.4g = %.4g\n", num1, num2, result);
+      printf("%s", equation);
 
-//WHEN PAST RESULT IS STORED    
-if (//smth that can detect)
-{
-  printf ("Detected store number (%.4g), would you like to use? [Y/N]\n" , &result);
-  scanf ("%c" &y); //the answer, add this when its asking for num1 & num2;  
-  
-}*/
-    
-    
+      break;
+    case 2: 
+      result = num1 - num2;
+      sprintf(equation," %.4g - %.4g = %.4g\n", num1, num2, result);
+      printf("%s", equation);
 
+      break;
+    case 3:
+      result = num1 * num2;
+      sprintf(equation," %.4g * %.4g = %.4g\n", num1, num2, result);
+      printf("%s", equation);
+
+      break;
+    case 4: 
+      if (num2 == 0)
+      {
+        printf("Cannot be divided.\n");
+          
+        break;
+      }
+
+      result = num1 / num2;
+      sprintf(equation," %.4g / %.4g = %.4g\n", num1, num2, result);
+      printf("%s",equation);
+
+      break;
+    case 5:
+      if (num1 < 1)
+      {
+        printf("Square root cannot be calculated.\n");
+      }
+      result = sqrt(num1);
+      sprintf(equation,"Square root of %.4g = %.4g\n", num1, result);
+      printf("%s",equation);
+
+      break;
+    case 6:
+      result = sin (num1);
+      sprintf(equation,"sin (%.4g) = %.4g\n", num1, result);
+      printf("%s",equation);
+
+      break;
+    case 7:
+      result = cos(num1);
+      sprintf(equation,"cos (%.4g) = %.4g\n", num1, result);
+      printf("%s",equation);
+
+      break;
+    case 8:
+      result = tan (num1);
+      sprintf(equation,"tan (%.4g) = %.4g\n", num1, result);
+      printf("%s",equation);
+
+      break;
+      }
+
+
+    // CALC LOOP
+    printf("Continue calculating? (Y/N): ");
+    scanf(" %c", &replay);
+  }  
+
+ 
     
-    
-   
+    //ERROR MESSAGE FOR (Y/N)
+    while (replay != 'Y' && replay != 'y' && replay != 'N' && replay != 'n' )
+    {
+      printf("Invalid. Try again.\n");
+      printf("Continue calculating? (Y/N): ");
+      scanf(" %c", &replay);
+    }
+
+
+    //Exiting Program
+    if (replay == 'N'|| replay == 'n')
+      {
+        printf("Quitting calculator...\n");
+        exit(0);
+      }
+
+
 return 0;  
 }
-
-/*void printCalc (Calculation calc)
-{
-  printf ("%f %s %f = %f", calc.number1, calc.operator, calc.number2, calc.results);
-}
-//PRINT HISTORY OF CALCULATIONS
-void printHistory
-{
-int list[10];  
-int length = sizeof(list) / sizeof(list[0]);
-for (i=0; i<10; i++)
-{
-  // this is for the array list
-  printf ("%f %s %f = %f", *calc[i].number1, *calc[i].operator, *calc[i].number2, *calc[i].results);
-}
-//if list is already > 10 then delete the top one*/
-
-
