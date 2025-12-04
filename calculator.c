@@ -3,6 +3,8 @@
 #include <math.h>
 #include <string.h>
 
+void printHistory (char equation[10][100],int listSize);
+
 int main()
 {
   //MAIN VARIABLES
@@ -10,7 +12,8 @@ int main()
   float num2;
   int op;
   float result;
-  char equation[100];
+  char equation [10][100];
+  int listSize = sizeof(*equation) / sizeof (equation[0]);
   //LOOP
   char replay='y';
   
@@ -64,19 +67,19 @@ int main()
     {
     case 1:
       result = num1 + num2;
-      sprintf(equation," %.4g + %.4g = %.4g\n", num1, num2, result);
+      sprintf(*equation," %.4g + %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation);
 
       break;
     case 2: 
       result = num1 - num2;
-      sprintf(equation," %.4g - %.4g = %.4g\n", num1, num2, result);
+      sprintf(*equation," %.4g - %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation);
 
       break;
     case 3:
       result = num1 * num2;
-      sprintf(equation," %.4g * %.4g = %.4g\n", num1, num2, result);
+      sprintf(*equation," %.4g * %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation);
 
       break;
@@ -89,7 +92,7 @@ int main()
       }
 
       result = num1 / num2;
-      sprintf(equation," %.4g / %.4g = %.4g\n", num1, num2, result);
+      sprintf(*equation," %.4g / %.4g = %.4g\n", num1, num2, result);
       printf("%s",equation);
 
       break;
@@ -99,31 +102,31 @@ int main()
         printf("Square root cannot be calculated.\n");
       }
       result = sqrt(num1);
-      sprintf(equation,"Square root of %.4g = %.4g\n", num1, result);
+      sprintf(*equation,"Square root of %.4g = %.4g\n", num1, result);
       printf("%s",equation);
 
       break;
     case 6:
       result = sin (num1);
-      sprintf(equation,"sin (%.4g) = %.4g\n", num1, result);
+      sprintf(*equation,"sin (%.4g) = %.4g\n", num1, result);
       printf("%s",equation);
 
       break;
     case 7:
       result = cos(num1);
-      sprintf(equation,"cos (%.4g) = %.4g\n", num1, result);
+      sprintf(*equation,"cos (%.4g) = %.4g\n", num1, result);
       printf("%s",equation);
 
       break;
     case 8:
       result = tan (num1);
-      sprintf(equation,"tan (%.4g) = %.4g\n", num1, result);
+      sprintf(*equation,"tan (%.4g) = %.4g\n", num1, result);
       printf("%s",equation);
 
       break;
       }
 
-
+    printHistory (equation,listSize);
     // CALC LOOP
     printf("Continue calculating? (Y/N): ");
     scanf(" %c", &replay);
@@ -149,4 +152,13 @@ int main()
 
 
 return 0;  
+}
+
+void printHistory (char equation[10][100],int listSize)
+{
+  for (int i=0; i<listSize;i++)
+  {
+    printf("Past History\n");
+    printf("%s\n", equation[i]);
+  }
 }
