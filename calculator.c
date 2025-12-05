@@ -18,11 +18,16 @@ int main()
   //initialize history buffer to empty strings
   for (int i = 0; i < listSize; ++i) equation[i][0] = '\0';
   //Start looping
-  char replay='y';
+  char replay='y'; 
+ 
+  FILE *historyCalculation;  
+  historyCalculation = fopen ("history.txt", "a");
+  if (historyCalculation == NULL)
+  {
+    printf("Error opening file!\n"); 
+  }
 
-  FILE *historyCalculation;
- 
- 
+
   printf("---CALCULATOR---\n");
   while (replay == 'y' || replay == 'Y')
   {
@@ -68,12 +73,7 @@ int main()
         scanf(" %f", &num2);
       }
        
-    historyCalculation = fopen ("history.txt", "a");
-    if (historyCalculation == NULL)
-    {
-      printf("Error opening file!\n");
-      continue; 
-    }
+
     //OPERATORS 
     switch (op)
     {
@@ -81,32 +81,36 @@ int main()
       result = num1 + num2;
       sprintf(equation[historyIndex]," %.4g + %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation[historyIndex]);
+
+      historyCalculation = fopen ("history.txt", "a");
       fprintf(historyCalculation,"%s\n", equation[historyIndex]);
       fclose(historyCalculation);
+
       historyIndex = (historyIndex + 1) % listSize;
-
-
 
       break;
     case 2: 
       result = num1 - num2;
       sprintf(equation[historyIndex]," %.4g - %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation[historyIndex]);
-      historyIndex = (historyIndex + 1) % listSize;
 
+      historyCalculation = fopen ("history.txt", "a");
       fprintf(historyCalculation,"%s\n", equation[historyIndex]);
       fclose(historyCalculation);
+
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
     case 3:
       result = num1 * num2;
       sprintf(equation[historyIndex]," %.4g * %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation[historyIndex]);
-      historyIndex = (historyIndex + 1) % listSize;
-
+      
+      historyCalculation = fopen ("history.txt", "a");
       fprintf(historyCalculation,"%s\n", equation[historyIndex]);
       fclose(historyCalculation);
 
+      historyIndex = (historyIndex + 1) % listSize;
       break;
     case 4: 
       if (num2 == 0)
@@ -118,11 +122,13 @@ int main()
 
       result = num1 / num2;
       sprintf(equation[historyIndex]," %.4g / %.4g = %.4g\n", num1, num2, result);
-      printf("%s",equation[historyIndex]);     
-      historyIndex = (historyIndex + 1) % listSize;
+      printf("%s",equation[historyIndex]);   
 
+      historyCalculation = fopen ("history.txt", "a");
       fprintf(historyCalculation,"%s\n", equation[historyIndex]);
       fclose(historyCalculation);
+
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
     case 5:
@@ -133,38 +139,47 @@ int main()
       result = sqrt(num1);
       sprintf(equation[historyIndex],"Square root of %.4g = %.4g\n", num1, result);
       printf("%s",equation[historyIndex]);
-      historyIndex = (historyIndex + 1) % listSize;
-
+      
+      historyCalculation = fopen ("history.txt", "a");
       fprintf(historyCalculation,"%s\n", equation[historyIndex]);
       fclose(historyCalculation);
+
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
     case 6:
       result = sin (num1);
       sprintf(equation[historyIndex],"sin (%.4g) = %.4g\n", num1, result);
       printf("%s",equation[historyIndex]);
-      historyIndex = (historyIndex + 1) % listSize;
-      
+
+      historyCalculation = fopen ("history.txt", "a");    
       fprintf(historyCalculation,"%s\n", equation[historyIndex]);
       fclose(historyCalculation);
+
+      historyIndex = (historyIndex + 1) % listSize;
+
       break;
     case 7:
       result = cos(num1);
       sprintf(equation[historyIndex],"cos (%.4g) = %.4g\n", num1, result);
       printf("%s",equation[historyIndex]);
-      historyIndex = (historyIndex + 1) % listSize;
-
+      
+      historyCalculation = fopen ("history.txt", "a");
       fprintf(historyCalculation,"%s\n", equation[historyIndex]);
       fclose(historyCalculation);
+
+      historyIndex = (historyIndex + 1) % listSize;
       break;
     case 8:
       result = tan (num1);
       sprintf(equation[historyIndex],"tan (%.4g) = %.4g\n", num1, result);
       printf("%s",equation[historyIndex]);
-      historyIndex = (historyIndex + 1) % listSize;
 
+      historyCalculation = fopen ("history.txt", "a");
       fprintf(historyCalculation,"%s\n", equation[historyIndex]);
       fclose(historyCalculation);
+
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
     case 9:
@@ -202,8 +217,6 @@ int main()
 
   }  
 
-    
-
 
     //Exiting Program
     if (replay == 'N'|| replay == 'n')
@@ -211,8 +224,7 @@ int main()
         printf("Quitting calculator...\n");
         exit(0);
       }
-
-
+ 
 return 0;  
 }
 
