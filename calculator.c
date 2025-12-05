@@ -7,20 +7,23 @@ void printHistory (char equation[10][100],int listSize);
 
 int main()
 {
-  //MAIN VARIABLES
   float num1;
   float num2;
   int op;
   float result;
   char equation [10][100];
-  int listSize = sizeof(*equation) / sizeof (equation[0]);
-  //LOOP
+  int listSize = sizeof(equation) / sizeof (equation[0]);
+  int historyIndex = 0;
+  //initialize history buffer to empty strings
+  for (int i = 0; i < listSize; ++i) equation[i][0] = '\0';
+  //Start looping
   char replay='y';
   
 
   printf("---CALCULATOR---\n");
   while (replay == 'y' || replay == 'Y')
   {
+
     //LAYOUT
     printf("Enter a number to select an operator:\n ");
     printf("----------------\n ");    
@@ -32,6 +35,7 @@ int main()
     printf("6. Sin\n ");
     printf("7. Cos\n ");
     printf("8. Tan\n ");
+    printf("9. Access History\n");
     printf("----------------\n ");
     printf("Press 0 to exit\n ");
     printf("Selected: ");
@@ -67,21 +71,21 @@ int main()
     {
     case 1:
       result = num1 + num2;
-      sprintf(*equation," %.4g + %.4g = %.4g\n", num1, num2, result);
-      printf("%s", equation);
-
+      sprintf(equation[historyIndex]," %.4g + %.4g = %.4g\n", num1, num2, result);
+      printf("%s", equation[historyIndex]);
+      historyIndex = (historyIndex + 1) % listSize;
       break;
     case 2: 
       result = num1 - num2;
-      sprintf(*equation," %.4g - %.4g = %.4g\n", num1, num2, result);
-      printf("%s", equation);
-
+      sprintf(equation[historyIndex]," %.4g - %.4g = %.4g\n", num1, num2, result);
+      printf("%s", equation[historyIndex]);
+      historyIndex = (historyIndex + 1) % listSize;
       break;
     case 3:
       result = num1 * num2;
-      sprintf(*equation," %.4g * %.4g = %.4g\n", num1, num2, result);
-      printf("%s", equation);
-
+      sprintf(equation[historyIndex]," %.4g * %.4g = %.4g\n", num1, num2, result);
+      printf("%s", equation[historyIndex]);
+      historyIndex = (historyIndex + 1) % listSize;
       break;
     case 4: 
       if (num2 == 0)
@@ -92,41 +96,47 @@ int main()
       }
 
       result = num1 / num2;
-      sprintf(*equation," %.4g / %.4g = %.4g\n", num1, num2, result);
-      printf("%s",equation);
+      sprintf(equation[historyIndex]," %.4g / %.4g = %.4g\n", num1, num2, result);
+      printf("%s",equation[historyIndex]);
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
     case 5:
-      if (num1 < 1)
+      if (num1 < 0)
       {
         printf("Square root cannot be calculated.\n");
       }
       result = sqrt(num1);
-      sprintf(*equation,"Square root of %.4g = %.4g\n", num1, result);
-      printf("%s",equation);
+      sprintf(equation[historyIndex],"Square root of %.4g = %.4g\n", num1, result);
+      printf("%s",equation[historyIndex]);
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
     case 6:
       result = sin (num1);
-      sprintf(*equation,"sin (%.4g) = %.4g\n", num1, result);
-      printf("%s",equation);
+      sprintf(equation[historyIndex],"sin (%.4g) = %.4g\n", num1, result);
+      printf("%s",equation[historyIndex]);
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
     case 7:
       result = cos(num1);
-      sprintf(*equation,"cos (%.4g) = %.4g\n", num1, result);
-      printf("%s",equation);
+      sprintf(equation[historyIndex],"cos (%.4g) = %.4g\n", num1, result);
+      printf("%s",equation[historyIndex]);
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
     case 8:
       result = tan (num1);
-      sprintf(*equation,"tan (%.4g) = %.4g\n", num1, result);
-      printf("%s",equation);
+      sprintf(equation[historyIndex],"tan (%.4g) = %.4g\n", num1, result);
+      printf("%s",equation[historyIndex]);
+      historyIndex = (historyIndex + 1) % listSize;
 
       break;
       }
 
     printHistory (equation,listSize);
+
     // CALC LOOP
     printf("Continue calculating? (Y/N): ");
     scanf(" %c", &replay);
@@ -156,9 +166,11 @@ return 0;
 
 void printHistory (char equation[10][100],int listSize)
 {
-  for (int i=0; i<listSize;i++)
-  {
-    printf("Past History\n");
-    printf("%s\n", equation[i]);
+  printf("----------------\n");
+  printf("Past History\n");
+  for (int i = 0; i < listSize; ++i) {
+    if (equation[i][0] == '\0') continue; //find empty strings 
+
+    printf("%s", equation[i]);
   }
 }
