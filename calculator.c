@@ -14,12 +14,15 @@ int main()
   char equation [10][100];
   int listSize = sizeof(equation) / sizeof (equation[0]);
   int historyIndex = 0;
+  char delete;
   //initialize history buffer to empty strings
   for (int i = 0; i < listSize; ++i) equation[i][0] = '\0';
   //Start looping
   char replay='y';
-  
 
+  FILE *historyCalculation;
+ 
+ 
   printf("---CALCULATOR---\n");
   while (replay == 'y' || replay == 'Y')
   {
@@ -50,7 +53,7 @@ int main()
     }
 
     //VALIDATING OPERATOR
-    if (op < 0 || op > 8)
+    if (op < 0 || op > 9)
     {
       printf("Invalid Operator.\n");
     }
@@ -65,7 +68,12 @@ int main()
         scanf(" %f", &num2);
       }
        
-      
+    historyCalculation = fopen ("history.txt", "a");
+    if (historyCalculation == NULL)
+    {
+      printf("Error opening file!\n");
+      continue; 
+    }
     //OPERATORS 
     switch (op)
     {
@@ -73,19 +81,32 @@ int main()
       result = num1 + num2;
       sprintf(equation[historyIndex]," %.4g + %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation[historyIndex]);
+      fprintf(historyCalculation,"%s\n", equation[historyIndex]);
+      fclose(historyCalculation);
       historyIndex = (historyIndex + 1) % listSize;
+
+
+
       break;
     case 2: 
       result = num1 - num2;
       sprintf(equation[historyIndex]," %.4g - %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation[historyIndex]);
       historyIndex = (historyIndex + 1) % listSize;
+
+      fprintf(historyCalculation,"%s\n", equation[historyIndex]);
+      fclose(historyCalculation);
+
       break;
     case 3:
       result = num1 * num2;
       sprintf(equation[historyIndex]," %.4g * %.4g = %.4g\n", num1, num2, result);
       printf("%s", equation[historyIndex]);
       historyIndex = (historyIndex + 1) % listSize;
+
+      fprintf(historyCalculation,"%s\n", equation[historyIndex]);
+      fclose(historyCalculation);
+
       break;
     case 4: 
       if (num2 == 0)
@@ -97,8 +118,11 @@ int main()
 
       result = num1 / num2;
       sprintf(equation[historyIndex]," %.4g / %.4g = %.4g\n", num1, num2, result);
-      printf("%s",equation[historyIndex]);
+      printf("%s",equation[historyIndex]);     
       historyIndex = (historyIndex + 1) % listSize;
+
+      fprintf(historyCalculation,"%s\n", equation[historyIndex]);
+      fclose(historyCalculation);
 
       break;
     case 5:
@@ -111,13 +135,18 @@ int main()
       printf("%s",equation[historyIndex]);
       historyIndex = (historyIndex + 1) % listSize;
 
+      fprintf(historyCalculation,"%s\n", equation[historyIndex]);
+      fclose(historyCalculation);
+
       break;
     case 6:
       result = sin (num1);
       sprintf(equation[historyIndex],"sin (%.4g) = %.4g\n", num1, result);
       printf("%s",equation[historyIndex]);
       historyIndex = (historyIndex + 1) % listSize;
-
+      
+      fprintf(historyCalculation,"%s\n", equation[historyIndex]);
+      fclose(historyCalculation);
       break;
     case 7:
       result = cos(num1);
@@ -125,6 +154,8 @@ int main()
       printf("%s",equation[historyIndex]);
       historyIndex = (historyIndex + 1) % listSize;
 
+      fprintf(historyCalculation,"%s\n", equation[historyIndex]);
+      fclose(historyCalculation);
       break;
     case 8:
       result = tan (num1);
@@ -132,25 +163,46 @@ int main()
       printf("%s",equation[historyIndex]);
       historyIndex = (historyIndex + 1) % listSize;
 
-      break;
-      }
+      fprintf(historyCalculation,"%s\n", equation[historyIndex]);
+      fclose(historyCalculation);
 
-    printHistory (equation,listSize);
+      break;
+    case 9:
+      printf("----Past History:----\n");
+      char buffer[256]={0};
+
+      historyCalculation = fopen ("history.txt", "r");
+
+      while (fgets(buffer, sizeof(buffer), historyCalculation) != NULL)
+      {
+        printf("%s", buffer);
+      }
+      fclose(historyCalculation);
+      break;
+    }
+
+
+    if(op >1 && op <9)
+    {
+      printHistory (equation,listSize);
+    }
+  
 
     // CALC LOOP
     printf("Continue calculating? (Y/N): ");
     scanf(" %c", &replay);
-  }  
 
- 
-    
-    //ERROR MESSAGE FOR (Y/N)
+        //ERROR MESSAGE FOR (Y/N)
     while (replay != 'Y' && replay != 'y' && replay != 'N' && replay != 'n' )
     {
       printf("Invalid. Try again.\n");
       printf("Continue calculating? (Y/N): ");
       scanf(" %c", &replay);
     }
+
+  }  
+
+    
 
 
     //Exiting Program
@@ -168,9 +220,9 @@ void printHistory (char equation[10][100],int listSize)
 {
   printf("----------------\n");
   printf("Past History\n");
-  for (int i = 0; i < listSize; ++i) {
-    if (equation[i][0] == '\0') continue; //find empty strings 
-
+  for (int i = 0; i < listSize; ++i) 
+  {
+    if (equation[i][0] == '\0') continue; //find empty strings
     printf("%s", equation[i]);
   }
 }
